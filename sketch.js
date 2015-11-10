@@ -5,6 +5,8 @@ var totIt = 5;
 var fWidth = 800;
 var fHeight = 800;
 var flag = 0;
+var inst = 'potato';
+var instDiv;
 
 //DRAWING VARIABLES
 var circles = [];
@@ -38,17 +40,24 @@ function setup() {
   setupSliders();
   setupDropDown();
   setupColorPallete();
+  setupP();
   initMusic();
   canvasGraphics();
+
 
 
 }
 
 function draw() {
-
+  
+  
+  
   if (abc.value() == 'circles') {
     circleArt();
+    
   }
+  textInstructions();
+  
 }
 
 
