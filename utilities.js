@@ -1,10 +1,12 @@
 function circleArt() {
-  if (pause == true && frameCount % 3 == 0) {
-    f = new fractalLine((frameCount * 2) % (width + 100), height / (2), (mouseY - height / 2) / (2* xsplit.value()),  (mouseY - height / 2) / 2*( ysplit.value()), (mouseX), pgTwo);
+
+  if (pause == false && frameCount % 2 == 0) {
+    linePosX++;
+    f = new fractalLine((linePosX * 2) % (width + 100), height / (2), (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
     f.drawFractal();
   }
-push();
-colorMode(RGB);
+  push();
+  colorMode(RGB);
   background(255);
   pop();
   for (var a = 0; a < xsplit.value(); a++) {
@@ -12,10 +14,10 @@ colorMode(RGB);
       image(pgTwo, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
     }
   }
-  
+
 }
 
-function mouseDragged() {
+function fractalArt() {
   if (mouseX < cWidth && mouseY < cHeight && mouseX > 0 && mouseY > 0) {
     if (abc.value() == 'fractals') {
       background(255);
@@ -25,10 +27,8 @@ function mouseDragged() {
       colorMode(HSB);
       var distFromCenter = dist(mouseX, mouseY, cWidth / 2, cHeight / 2);
       var circleSize = 80 - distFromCenter / 6;
-      //acolor = color];
-      //print(distFromCenter);
-      //totIt = floor(5-distFromCenter/72);
-      circleHue = map(distFromCenter, 0, 350, 100, 240);
+
+      circleHue = map(distFromCenter, 0, 350, hueStart, hueStart + 50);
       pgOne = createGraphics(cWidth, cHeight);
       cS = map(distFromCenter, 0, 350, 10, 70);
 
@@ -46,10 +46,11 @@ function mouseDragged() {
           }
         }
       }
-      // image(gridGraph, 0, 0, cWidth, cHeight);
+
     }
     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   }
+
 }
 
 function keyPressed() {
@@ -104,4 +105,16 @@ function refreshFn() {
   fractals = [];
   linePosX = 0;
   background(255);
+}
+
+function colorChangeRed() {
+  hueStart = 0;
+}
+
+function colorChangeGreen() {
+  hueStart = 100;
+}
+
+function colorChangeBlue() {
+  hueStart = 200;
 }
