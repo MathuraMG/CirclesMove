@@ -17,6 +17,9 @@ var linePosX = 0;
 var colour;
 var pause = false;
 
+//COLOUR VARIABLES
+var hueStart = 0;
+
 //MUSIC VARIABLES
 var freq = [261, 329, 392, 440, 523];
 var vol = [];
@@ -30,13 +33,15 @@ function setup() {
 
   createCanvas(fWidth, fHeight);
   background(255);
-  
+
   setupButtons();
   setupSliders();
   setupDropDown();
+  setupColorPallete();
   initMusic();
   canvasGraphics();
-  
+
+
 }
 
 function draw() {
@@ -46,3 +51,7 @@ function draw() {
   }
 }
 
+
+function mouseDragged() {
+  fractalArt();
+}

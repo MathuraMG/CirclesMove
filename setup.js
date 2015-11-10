@@ -7,15 +7,35 @@ function setupButtons() {
 
 function setupSliders() {
   xsplit = createSlider(1, 3, 1);
-  xsplit.position(20, 20);
+  xsplit.position(20, 50);
   ysplit = createSlider(1, 3, 1);
-  ysplit.position(20, 50);
+  ysplit.position(20, 90);
 }
 
 function setupDropDown() {
   abc = createSelect();
   abc.option('fractals');
   abc.option('circles');
+}
+
+function setupColorPallete(){
+  redBtn = createButton('  ');
+  redBtn.mousePressed(colorChangeRed);
+  redBtn.style("background-color","#ff0000");
+  redBtn.size(50,50);
+  redBtn.position(20,150);
+  
+  blueBtn = createButton('  ');
+  blueBtn.mousePressed(colorChangeBlue);
+  blueBtn.style("background-color","#0000ff");
+  blueBtn.size(50,50);
+  blueBtn.position(80,150);
+  
+  greenBtn = createButton('  ');
+  greenBtn.mousePressed(colorChangeGreen);
+  greenBtn.style("background-color","#00ff00");
+  greenBtn.size(50,50);
+  greenBtn.position(140,150);
 }
 
 function initMusic() {
