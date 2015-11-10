@@ -54,7 +54,7 @@ function fractalArt() {
 }
 
 function keyPressed() {
-  if (keyCode == BACKSPACE) {
+  if (keyCode == LEFT_ARROW) {
     //print('yo');
     background(255);
     pg.pop();
