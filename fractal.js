@@ -49,20 +49,22 @@ function fractalCircle(x, y, size, circleHue, pgOne) {
 
 
   }
-  
-  
+
+
 }
 
-function fractalLine(x, y, size, lineHue, pgOne) {
+function fractalLine(x, y, sizeX,sizeY, lineHue, pgOne) {
   this.x = x;
   this.y = y;
   this.lineHue = lineHue;
-  this.size = size;
+  this.sizeX = sizeX;
+  this.sizeY = sizeY;
   this.drawFractal = function() {
-    pgOne.stroke(lineHue,100,100);
-    pgOne.fill(lineHue,100,100);
-    pgOne.rect(x, y, size, size);
+    colorMode(HSB);
+    strokeWeight(0.5);
+    pgOne.stroke(lineHue, 100, 100);
+    noFill();
+    pgOne.ellipse(x, y, sizeX, sizeY);
   }
-  
-}
 
+}
