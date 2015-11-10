@@ -18,24 +18,44 @@ function setupDropDown() {
   abc.option('circles');
 }
 
-function setupColorPallete(){
+function setupColorPallete() {
   redBtn = createButton('  ');
   redBtn.mousePressed(colorChangeRed);
-  redBtn.style("background-color","#ff0000");
-  redBtn.size(50,50);
-  redBtn.position(20,150);
-  
+  redBtn.style("background-color", "#ff0000");
+  redBtn.size(50, 50);
+  redBtn.position(20, 150);
+
   blueBtn = createButton('  ');
   blueBtn.mousePressed(colorChangeBlue);
-  blueBtn.style("background-color","#0000ff");
-  blueBtn.size(50,50);
-  blueBtn.position(80,150);
-  
+  blueBtn.style("background-color", "#0000ff");
+  blueBtn.size(50, 50);
+  blueBtn.position(80, 150);
+
   greenBtn = createButton('  ');
   greenBtn.mousePressed(colorChangeGreen);
-  greenBtn.style("background-color","#00ff00");
-  greenBtn.size(50,50);
-  greenBtn.position(140,150);
+  greenBtn.style("background-color", "#00ff00");
+  greenBtn.size(50, 50);
+  greenBtn.position(140, 150);
+}
+
+function setupP() {
+  instDiv = createP(inst);
+  instDiv.style('color', 'white'); //,'background-color','black');
+  instDiv.position(250, 0);
+  instDiv.id('instructions');
+}
+
+function textInstructions() {
+  if (abc.value() == 'circles') {
+    inst = ' Press space to pause the drawing and move your mouse about the canvas to chanfe size and colour';
+  } else if (abc.value() == 'fractals') {
+    inst = ' Drag mouse on canvas to get fractals of different shape and colour';
+  } else {
+    inst = ' Meh.';
+  }
+  a = document.getElementById('instructions');
+  a.innerHTML = inst;
+
 }
 
 function initMusic() {

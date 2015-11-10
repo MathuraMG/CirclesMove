@@ -1,6 +1,6 @@
 function circleArt() {
 
-  if (pause == false && frameCount % 2 == 0) {
+  if (pause == false && frameCount % 1 == 0) {
     linePosX++;
     f = new fractalLine((linePosX * 2) % (width + 100), height / (2), (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
     f.drawFractal();
