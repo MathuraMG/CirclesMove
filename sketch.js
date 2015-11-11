@@ -30,6 +30,7 @@ var totNotes = 5;
 var imgData;
 var ctx;
 var posX = 0;
+var selectX, selectY;
 
 function setup() {
 
@@ -49,18 +50,18 @@ function setup() {
 }
 
 function draw() {
-  
-  
-  
   if (abc.value() == 'circles') {
-    circleArt();
-    
+    circleArt(selectX, selectY);
+
   }
   textInstructions();
-  
 }
 
 
 function mouseDragged() {
   fractalArt();
+}
+
+function mouseReleased(){
+  setSelect();
 }
