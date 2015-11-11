@@ -1,8 +1,8 @@
-function circleArt() {
+function circleArt(selectX, selectY) {
 
-  if (pause == false && frameCount % 1 == 0) {
+  if (pause == false ){
     linePosX++;
-    f = new fractalLine((linePosX * 2) % (width + 100), height / (2), (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
+    f = new fractalLine((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
     f.drawFractal();
   }
   push();
@@ -117,4 +117,10 @@ function colorChangeGreen() {
 
 function colorChangeBlue() {
   hueStart = 200;
+}
+
+function setSelect(){
+  selectX = mouseX;
+  linePosX = mouseX;
+  selectY = mouseY;
 }
