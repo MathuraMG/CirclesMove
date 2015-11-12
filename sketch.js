@@ -56,26 +56,23 @@ function setup() {
   initMusic();
   canvasGraphics();
 
-
-
-
-
-
 }
 
 function draw() {
+
   if (abc.value() == 'circles') {
+    background(255);
     circleArt(selectX, selectY);
 
   }
   if (abc.value() == 'lines' && brTrue == true) {
+    background(255);
     //blendMode(LIGHTEST);
     lineArt(selectX, selectY);
 
   }
   textInstructions();
 }
-
 
 function mouseDragged() {
   fractalArt();
@@ -84,10 +81,12 @@ function mouseDragged() {
 function mouseReleased() {
   if (abc.value() == 'lines') {
     if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+      linesBr = [];
+      brCount = 0;
       //blendMode(LIGHTEST);
       l = new elt();
-
-      l.init();
+      setSelect();
+      l.init(selectX, selectY);
       strokeWeight(0);
       l.drawLine();
       linesBr[0] = l;
@@ -96,5 +95,26 @@ function mouseReleased() {
 
   } else {
     setSelect();
+  }
+}
+
+function keyPressed() {
+  if (keyCode == LEFT_ARROW) {
+    //print('yo');
+    background(255);
+    pg.pop();
+    fractals.pop();
+    for (var i = 0; i < pg.length; i++) {
+
+      for (var a = 0; a < xsplit.value(); a++) {
+        for (var b = 0; b < ysplit.value(); b++) {
+          image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
+        }
+      }
+
+    }
+  }
+  if (keyCode == 32) {
+    pause = !pause;
   }
 }

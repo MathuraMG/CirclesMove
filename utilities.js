@@ -1,5 +1,4 @@
 function circleArt(selectX, selectY) {
-
   if (pause == false) {
     linePosX++;
     f = new circleArtPiece((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
@@ -14,31 +13,27 @@ function circleArt(selectX, selectY) {
       image(pgTwo, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
     }
   }
-
 }
 
 function lineArt(selectX, selectY) {
-  
+  blendMode(DARKEST);
   if (pause == false) {
     brCount++;
     if ((brCount - 1) % numLines == 0) {
       l = new elt();
-
-      l.init(selectX, selectY);
+      l.init(selectX, selectY, pgThree);
       strokeWeight(0);
-
       l.drawLine();
-
       linesBr[((brCount - 1) / numLines) + 1] = l;
-
-
     } else {
       a = floor(((brCount - 1) / numLines));
-      curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines,hueStart);
+      curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines, hueStart, pgThree);
     }
-    // }
-
-
+  }
+  for (var a = 0; a < xsplit.value(); a++) {
+    for (var b = 0; b < ysplit.value(); b++) {
+      image(pgThree, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
+    }
   }
 }
 
@@ -76,27 +71,6 @@ function fractalArt() {
     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   }
 
-}
-
-function keyPressed() {
-  if (keyCode == LEFT_ARROW) {
-    //print('yo');
-    background(255);
-    pg.pop();
-    fractals.pop();
-    for (var i = 0; i < pg.length; i++) {
-
-      for (var a = 0; a < xsplit.value(); a++) {
-        for (var b = 0; b < ysplit.value(); b++) {
-          image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
-        }
-      }
-
-    }
-  }
-  if (keyCode == 32) {
-    pause = !pause;
-  }
 }
 
 function saveFn() {
