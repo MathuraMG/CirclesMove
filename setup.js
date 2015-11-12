@@ -16,6 +16,7 @@ function setupDropDown() {
   abc = createSelect();
   abc.option('fractals');
   abc.option('circles');
+  abc.option('lines');
 }
 
 function setupColorPallete() {
@@ -72,4 +73,5 @@ function canvasGraphics() {
   ctx = canvas.getContext('2d');
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
   pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
 }

@@ -1,3 +1,31 @@
+function curvesBW(lines1, lines2, i,hueStart) {
+  //for (var i = 0; i < 50; i++) {
+  l = new elt();
+  l.init();
+  colorMode(HSB);
+   stroke(hueStart+abs((frameCount%100)-50), 100,100, 50);
+  for (var a = 1; a < lines2.ax.length; a++) {
+
+    l.ax[a] = lines1.ax[a] + ((lines2.ax[a] - lines1.ax[a]) / numLines) * i;
+    l.ay[a] = lines1.ay[a] + ((lines2.ay[a] - lines1.ay[a]) / numLines) * i;
+    l.lax[a] = lines1.lax[a] + ((lines2.lax[a] - lines1.lax[a]) / numLines) * i;
+    l.lay[a] = lines1.lay[a] + ((lines2.lay[a] - lines1.lay[a]) / numLines) * i;
+    strokeWeight(0.5);
+    
+   
+    noFill();
+    line(l.ax[a], l.ay[a], l.ax[a - 1], l.ay[a - 1]);
+    line(l.lax[a], l.lay[a], l.lax[a - 1], l.lay[a - 1]);
+    //arc(l.ax[a], l.ay[a], dist(l.ax[a - 1], l.ay[a - 1],l.ax[a], l.ay[a]), random(5,10),random(0,0.5), random(0.5,1));
+    //}
+    //lines = l;
+
+  }
+
+
+}
+
+
 function fractalCircle(x, y, size, circleHue, pgOne) {
   this.x = x;
   this.y = y;
@@ -53,7 +81,7 @@ function fractalCircle(x, y, size, circleHue, pgOne) {
 
 }
 
-function fractalLine(x, y, sizeX,sizeY, lineHue, pgOne) {
+function circleArtPiece(x, y, sizeX,sizeY, lineHue, pgOne) {
   this.x = x;
   this.y = y;
   this.lineHue = lineHue;
@@ -65,6 +93,22 @@ function fractalLine(x, y, sizeX,sizeY, lineHue, pgOne) {
     pgOne.stroke(lineHue, 100, 100);
     noFill();
     pgOne.ellipse(x, y, sizeX, sizeY);
+  }
+
+}
+
+function lineArtPiece(x, y, sizeX,sizeY, lineHue, pgOne) {
+  this.x = x;
+  this.y = y;
+  this.lineHue = lineHue;
+  this.sizeX = sizeX;
+  this.sizeY = sizeY;
+  this.drawFractal = function() {
+    colorMode(HSB);
+    strokeWeight(0.5);
+    pgOne.stroke(lineHue, 100, 100);
+    noFill();
+    pgOne.line(x, y, sizeX, sizeY);
   }
 
 }

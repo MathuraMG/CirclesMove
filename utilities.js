@@ -1,8 +1,8 @@
 function circleArt(selectX, selectY) {
 
-  if (pause == false ){
+  if (pause == false) {
     linePosX++;
-    f = new fractalLine((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
+    f = new circleArtPiece((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
     f.drawFractal();
   }
   push();
@@ -15,6 +15,31 @@ function circleArt(selectX, selectY) {
     }
   }
 
+}
+
+function lineArt(selectX, selectY) {
+  
+  if (pause == false) {
+    brCount++;
+    if ((brCount - 1) % numLines == 0) {
+      l = new elt();
+
+      l.init(selectX, selectY);
+      strokeWeight(0);
+
+      l.drawLine();
+
+      linesBr[((brCount - 1) / numLines) + 1] = l;
+
+
+    } else {
+      a = floor(((brCount - 1) / numLines));
+      curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines,hueStart);
+    }
+    // }
+
+
+  }
 }
 
 function fractalArt() {
@@ -102,6 +127,7 @@ function gridFn() {
 function refreshFn() {
   pg = [];
   pgTwo.background(255);
+  pgThree.background(255);
   fractals = [];
   linePosX = 0;
   background(255);
@@ -119,8 +145,8 @@ function colorChangeBlue() {
   hueStart = 200;
 }
 
-function setSelect(){
-  selectX = mouseX;
-  linePosX = mouseX;
-  selectY = mouseY;
+function setSelect() {
+  selectX = mouseX / xsplit.value();
+  linePosX = mouseX / xsplit.value();
+  selectY = mouseY / ysplit.value();
 }
