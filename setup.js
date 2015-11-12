@@ -16,6 +16,7 @@ function setupDropDown() {
   abc = createSelect();
   abc.option('fractals');
   abc.option('circles');
+  abc.option('lines');
 }
 
 function setupColorPallete() {
@@ -50,6 +51,8 @@ function textInstructions() {
     inst = ' Press space to pause the drawing and move your mouse about the canvas to change size and colour';
   } else if (abc.value() == 'fractals') {
     inst = ' Drag mouse on canvas to get fractals of different shape and colour. Press left arrow to delete previous fractal';
+  } else if (abc.value() == 'lines') {
+    inst = ' Click on the canvas to create a brownian motion. Press space to pause';
   } else {
     inst = ' Meh.';
   }
@@ -72,4 +75,5 @@ function canvasGraphics() {
   ctx = canvas.getContext('2d');
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
   pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
 }
