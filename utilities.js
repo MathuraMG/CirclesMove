@@ -1,78 +1,3 @@
-function circleArt(selectX, selectY) {
-  if (pause == false) {
-    linePosX++;
-    f = new circleArtPiece((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
-    f.drawFractal();
-  }
-  push();
-  colorMode(RGB);
-  background(255);
-  pop();
-  for (var a = 0; a < xsplit.value(); a++) {
-    for (var b = 0; b < ysplit.value(); b++) {
-      image(pgTwo, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
-    }
-  }
-}
-
-function lineArt(selectX, selectY) {
-  blendMode(DARKEST);
-  if (pause == false) {
-    brCount++;
-    if ((brCount - 1) % numLines == 0) {
-      l = new elt();
-      l.init(selectX, selectY, pgThree);
-      strokeWeight(0);
-      l.drawLine();
-      linesBr[((brCount - 1) / numLines) + 1] = l;
-    } else {
-      a = floor(((brCount - 1) / numLines));
-      curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines, hueStart, pgThree);
-    }
-  }
-  for (var a = 0; a < xsplit.value(); a++) {
-    for (var b = 0; b < ysplit.value(); b++) {
-      image(pgThree, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
-    }
-  }
-}
-
-function fractalArt() {
-  if (mouseX < cWidth && mouseY < cHeight && mouseX > 0 && mouseY > 0) {
-    if (abc.value() == 'fractals') {
-      background(255);
-      cWidth = fWidth / xsplit.value();
-      cHeight = fHeight / ysplit.value();
-      push();
-      colorMode(HSB);
-      var distFromCenter = dist(mouseX, mouseY, cWidth / 2, cHeight / 2);
-      var circleSize = 80 - distFromCenter / 6;
-
-      circleHue = map(distFromCenter, 0, 350, hueStart, hueStart + 50);
-      pgOne = createGraphics(cWidth, cHeight);
-      cS = map(distFromCenter, 0, 350, 10, 70);
-
-      f = new fractalCircle(mouseX, mouseY, cS, circleHue, pgOne);
-
-      f.drawFractal();
-
-      pg.push(pgOne);
-      fractals.push(f);
-      pop();
-      for (var i = 0; i < pg.length; i++) {
-        for (var a = 0; a < xsplit.value(); a++) {
-          for (var b = 0; b < ysplit.value(); b++) {
-            image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
-          }
-        }
-      }
-
-    }
-    imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-  }
-
-}
-
 function saveFn() {
   saveCanvas('part', 'png');
 }
@@ -100,11 +25,11 @@ function gridFn() {
 
 function refreshFn() {
   pg = [];
-  pgTwo.background(255);
-  pgThree.background(255);
+  pgTwo.background(0);
+  pgThree.background(0);
   fractals = [];
   linePosX = 0;
-  background(255);
+  background(0);
 }
 
 function colorChangeRed() {
@@ -123,4 +48,7 @@ function setSelect() {
   selectX = mouseX / xsplit.value();
   linePosX = mouseX / xsplit.value();
   selectY = mouseY / ysplit.value();
+}
+function changeSelectPattern(a){
+  selectPattern = a;
 }

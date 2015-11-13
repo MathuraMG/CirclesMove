@@ -10,17 +10,17 @@
   <script src="libraries/p5.dom.js" type="text/javascript"></script>
   <script src="libraries/p5.sound.js" type="text/javascript"></script>
   <script src="sketch.js" type="text/javascript"></script>
-  
+
   <script src="setup.js" type="text/javascript"></script>
   <script src="circle.js" type="text/javascript"></script>
   <script src="lines.js" type="text/javascript"></script>
-  
+
   <script src="fractal.js" type="text/javascript"></script>
   <script src="utilities.js" type="text/javascript"></script>
   <script src="brElt.js" type="text/javascript"></script>
-  
+
   <script src="musicUtilities.js" type="text/javascript"></script>
-  
+
 
 
   <style>
@@ -36,6 +36,17 @@
 </head>
 
 <body>
+  <button id="fractalBtn" class="selectBtn" onClick="javascript:changeSelectPattern('fractals')"><img class="imgBtn" src="assets/frBtn.png"></button>
+  <button id="circlesBtn" class="selectBtn" onClick="javascript:changeSelectPattern('circles')"><img class="imgBtn" src="assets/crBtn.png"></button>
+  <button id="brownianBtn" class="selectBtn" onClick="javascript:changeSelectPattern('lines')"><img class="imgBtn" src="assets/brBtn.png"></button>
+  <button id="saveBtn" class="fnBtn" onClick="javascript:saveFn()">Save</button>
+  <button id="refreshBtn" class="fnBtn" onClick="javascript:refreshFn()">Refresh</button>
 </body>
+<!--
+  saveBtn = createButton('Save');
+  saveBtn.mousePressed(saveFn);
+  gridToggle = createButton('Refresh');
+  gridToggle.mousePressed(refreshFn);
+  -->
 
 </html>

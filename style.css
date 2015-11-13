@@ -1,14 +1,14 @@
 body {
-  background-color: #000000;
+  background-color: #101010;
 }
 
 canvas {
   display: block;
   position: absolute;
-  border: 0px solid white;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  border: 2px solid black;
+  bottom: 15%;
+  top: 2%;
+  left: 20%;
+  right:2%;
 }
+

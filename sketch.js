@@ -8,6 +8,8 @@ var flag = 0;
 var inst = 'potato';
 var instDiv;
 
+var selectPattern = "";
+
 //DRAWING VARIABLES
 var circles = [];
 var fractals = [];
@@ -42,31 +44,31 @@ var brTrue = false;
 
 function setup() {
 
-  fWidth = windowWidth;
-  fHeight = windowHeight - 100;
+  fWidth = windowWidth * 0.78;
+  fHeight = windowHeight * 0.83;
 
   createCanvas(fWidth, fHeight);
-  background(255);
+  background(0);
 
-  setupButtons();
+  setupFnButtons();
   setupSliders();
-  setupDropDown();
   setupColorPallete();
   setupP();
   initMusic();
   canvasGraphics();
+  selectButtonImg();
 
 }
 
 function draw() {
 
-  if (abc.value() == 'circles') {
-    background(255);
+  if (selectPattern == 'circles') {
+    background(0);
     circleArt(selectX, selectY);
 
   }
-  if (abc.value() == 'lines' && brTrue == true) {
-    background(255);
+  if (selectPattern == 'lines' && brTrue == true) {
+    background(0);
     //blendMode(LIGHTEST);
     lineArt(selectX, selectY);
 
@@ -79,7 +81,7 @@ function mouseDragged() {
 }
 
 function mouseReleased() {
-  if (abc.value() == 'lines') {
+  if (selectPattern == 'lines') {
     if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
       linesBr = [];
       brCount = 0;
@@ -101,7 +103,7 @@ function mouseReleased() {
 function keyPressed() {
   if (keyCode == LEFT_ARROW) {
     //print('yo');
-    background(255);
+    background(0);
     pg.pop();
     fractals.pop();
     for (var i = 0; i < pg.length; i++) {

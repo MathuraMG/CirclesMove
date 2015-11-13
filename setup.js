@@ -1,42 +1,67 @@
-function setupButtons() {
-  saveBtn = createButton('Save');
-  saveBtn.mousePressed(saveFn);
-  gridToggle = createButton('Refresh');
-  gridToggle.mousePressed(refreshFn);
+function setupFnButtons() {
+    a = document.getElementsByClassName('fnBtn');
+  for (var i = 0; i < a.length; i++) {
+    s = windowWidth * 0.035 + windowWidth * 0.05*i;
+    s = s + "px";
+    a[i].style.position = "absolute";
+    a[i].style.left = s;
+
+    h = windowWidth * (3 * 0.11 ) + windowWidth*0.01 ;
+    h = h + "px";
+    a[i].style.top = h;
+  }
 }
 
 function setupSliders() {
   xsplit = createSlider(1, 3, 1);
-  xsplit.position(20, 50);
+  xsplit.position(windowWidth * 0.2, windowHeight * 0.875);
   ysplit = createSlider(1, 3, 1);
-  ysplit.position(20, 90);
-}
-
-function setupDropDown() {
-  abc = createSelect();
-  abc.option('fractals');
-  abc.option('circles');
-  abc.option('lines');
+  ysplit.position(windowWidth * 0.2, windowHeight * 0.95);
 }
 
 function setupColorPallete() {
   redBtn = createButton('  ');
   redBtn.mousePressed(colorChangeRed);
+  redBtn.id('redBtn');
   redBtn.style("background-color", "#ff0000");
-  redBtn.size(50, 50);
-  redBtn.position(20, 150);
+  size = windowHeight * 0.1;
+  redBtn.size(size, size);
+  redBtn.position(windowWidth * 0.98 - size, windowHeight * 0.875);
 
   blueBtn = createButton('  ');
   blueBtn.mousePressed(colorChangeBlue);
+  blueBtn.id('blueBtn');
   blueBtn.style("background-color", "#0000ff");
-  blueBtn.size(50, 50);
-  blueBtn.position(80, 150);
+  blueBtn.size(size, size);
+  blueBtn.position(windowWidth * 0.98 - size * 2.5, windowHeight * 0.875);
 
   greenBtn = createButton('  ');
   greenBtn.mousePressed(colorChangeGreen);
+  greenBtn.id('greenBtn');
   greenBtn.style("background-color", "#00ff00");
-  greenBtn.size(50, 50);
-  greenBtn.position(140, 150);
+  greenBtn.size(size, size);
+  greenBtn.position(windowWidth * 0.98 - size * 4, windowHeight * 0.875);
+}
+
+function selectButtonImg() {
+  a = document.getElementsByClassName('imgBtn');
+  for (var i = 0; i < a.length; i++) {
+    s = windowWidth * 0.10;
+    s = s + "px";
+    a[i].style.width = s;
+    a[i].style.height = s;
+  }
+  a = document.getElementsByClassName('selectBtn');
+  for (var i = 0; i < a.length; i++) {
+    s = windowWidth * 0.035;
+    s = s + "px";
+    a[i].style.position = "absolute";
+    a[i].style.left = s;
+
+    h = windowWidth * (i * 0.11 ) + windowWidth*0.01 ;
+    h = h + "px";
+    a[i].style.top = h;
+  }
 }
 
 function setupP() {
@@ -47,14 +72,14 @@ function setupP() {
 }
 
 function textInstructions() {
-  if (abc.value() == 'circles') {
+  if (selectPattern == 'circles') {
     inst = ' Press space to pause the drawing and move your mouse about the canvas to change size and colour';
-  } else if (abc.value() == 'fractals') {
+  } else if (selectPattern == 'fractals') {
     inst = ' Drag mouse on canvas to get fractals of different shape and colour. Press left arrow to delete previous fractal';
-  } else if (abc.value() == 'lines') {
+  } else if (selectPattern == 'lines') {
     inst = ' Click on the canvas to create a brownian motion. Press space to pause';
   } else {
-    inst = ' Meh.';
+    inst = ' Click on a pattern to start ';
   }
   a = document.getElementById('instructions');
   a.innerHTML = inst;

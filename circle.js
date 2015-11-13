@@ -9,7 +9,7 @@ function circle(radius, x, y,flag,circleHue,pgOne) {
   this.draw = function() {
     push();
     colorMode(RGB);
-    pgOne.fill(255,255,255,1);
+    pgOne.fill(0,0,0,1);
     pop();
     pgOne.stroke(this.circleHue,100,100);
     pgOne.ellipse(x, y, radius * 2, radius * 2);
