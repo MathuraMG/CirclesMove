@@ -58,4 +58,11 @@ function changeSelectPattern(a) {
 
 function pauseFn() {
   pause = !pause;
+  if(pause==true){
+    var a = document.getElementById('pauseBtnImg');
+    a.src = "assets/playBtn.png";
+  }else if(pause == false){
+    var a = document.getElementById('pauseBtnImg');
+    a.src = "assets/pauseBtn.png";
+  }
 }

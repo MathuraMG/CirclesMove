@@ -67,9 +67,10 @@ function setup() {
 }
 
 function draw() {
-  //countPixels();
+
   if (selectPattern == 'circles') {
     //background(overallBG);
+    print(touches.length);
     if (touches.length > 0) {
 
       for (var i = 0; i < touches.length; i++) {
@@ -85,15 +86,9 @@ function draw() {
     //blendMode(LIGHTEST);
     lineArt(selectX, selectY);
 
-  } else if (selectPattern == 'fractals') {
-    //print('hello');
-    fractalArt();
   }
   textInstructions();
 }
-
-
-
 
 function mouseDragged() {
   if (selectPattern == 'fractals') {

@@ -55,15 +55,15 @@ function fractalArt() {
       cHeight = fHeight / ysplit.value();
       push();
       colorMode(HSB);
-      var distFromCenter = dist(xPoint, yPoint, windowWidth*0.78 / 2, windowHeight*0.83 / 2);
-      var circleSize = 80 - distFromCenter / 6;
+      var distFromCenter = dist(xPoint, yPoint, canvasWidth / 2, canvasHeight/ 2);
+      var circleSize = canvasWidth/17 - distFromCenter / 8;
 
 
-      circleHue = map(distFromCenter, 0, sqrt((windowWidth*windowWidth*0.64+windowHeight*windowHeight*0.64)), hueStart, hueStart + 100);
+      circleHue = map(distFromCenter, 0, sqrt((canvasWidth*canvasWidth+canvasHeight*canvasHeight))/4, hueStart, hueStart + 50);
       pgOne = createGraphics(cWidth, cHeight);
       cS = map(distFromCenter, 0, 350, 10, 70);
 
-      f = new fractalCircle(xPoint, yPoint, cS, circleHue, pgOne);
+      f = new fractalCircle(xPoint, yPoint, circleSize, circleHue, pgOne);
       print(xPoint+','+yPoint);
 
       f.drawFractal();
