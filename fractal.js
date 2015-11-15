@@ -6,7 +6,7 @@ function circleArt(selectX, selectY) {
   }
   push();
   colorMode(RGB);
-  background(0);
+  background(overallBG);
   pop();
   for (var a = 0; a < xsplit.value(); a++) {
     for (var b = 0; b < ysplit.value(); b++) {
@@ -38,14 +38,24 @@ function lineArt(selectX, selectY) {
 }
 
 function fractalArt() {
-  if (mouseX < cWidth && mouseY < cHeight && mouseX > 0 && mouseY > 0) {
+  var xPoint,yPoint;
+  if(touchIsDown)
+  {
+    xPoint = touchX;
+    yPoint = touchY;
+  }
+  else{
+    xPoint = mouseX;
+    yPoint = mouseY;
+  }
+  if (xPoint < cWidth && yPoint < cHeight && xPoint > 0 && yPoint > 0) {
     if (selectPattern == 'fractals') {
-      background(0);
+      background(overallBG);
       cWidth = fWidth / xsplit.value();
       cHeight = fHeight / ysplit.value();
       push();
       colorMode(HSB);
-      var distFromCenter = dist(mouseX, mouseY, windowWidth*0.78 / 2, windowHeight*0.83 / 2);
+      var distFromCenter = dist(xPoint, yPoint, windowWidth*0.78 / 2, windowHeight*0.83 / 2);
       var circleSize = 80 - distFromCenter / 6;
 
 
@@ -53,8 +63,8 @@ function fractalArt() {
       pgOne = createGraphics(cWidth, cHeight);
       cS = map(distFromCenter, 0, 350, 10, 70);
 
-      f = new fractalCircle(mouseX, mouseY, cS, circleHue, pgOne);
-      print(mouseX+','+mouseY);
+      f = new fractalCircle(xPoint, yPoint, cS, circleHue, pgOne);
+      print(xPoint+','+yPoint);
 
       f.drawFractal();
 

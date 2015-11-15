@@ -25,11 +25,11 @@ function gridFn() {
 
 function refreshFn() {
   pg = [];
-  pgTwo.background(0);
-  pgThree.background(0);
+  pgTwo.background(overallBG);
+  pgThree.background(overallBG);
   fractals = [];
   linePosX = 0;
-  background(0);
+  background(overallBG);
 }
 
 function colorChangeRed() {

@@ -7,6 +7,7 @@ var fHeight = 800;
 var flag = 0;
 var inst = 'potato';
 var instDiv;
+var overallBG = 0;
 
 var selectPattern = "";
 
@@ -29,11 +30,13 @@ var hueStart = 0;
 var freq = [261, 329, 392, 440, 523];
 var vol = [];
 var osc = [];
-var totNotes = 5;
+var notes = [];
+var totNotes = 3;
 var imgData;
 var ctx;
 var posX = 0;
 var selectX, selectY;
+var canvArea;
 
 //BROWNIAN VARIABLES
 var num = 100;
@@ -42,13 +45,18 @@ var numLines = 50;
 var linesBr = [];
 var brTrue = false;
 
+function preload() {
+  notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
+}
+
 function setup() {
 
   fWidth = windowWidth * 0.78;
   fHeight = windowHeight * 0.83;
+  canvArea = fWidth * fHeight * 0.5 / 100;
 
   createCanvas(fWidth, fHeight);
-  background(0);
+  background(overallBG);
 
   setupFnButtons();
   setupSliders();
@@ -61,23 +69,29 @@ function setup() {
 }
 
 function draw() {
-
+  // countPixels();
   if (selectPattern == 'circles') {
-    background(0);
+    background(overallBG);
     circleArt(selectX, selectY);
 
   }
   if (selectPattern == 'lines' && brTrue == true) {
-    background(0);
+    background(overallBG);
     //blendMode(LIGHTEST);
     lineArt(selectX, selectY);
 
   }
   textInstructions();
+
+  if (touchIsDown && selectPattern == 'fractals') {
+    fractalArt();
+  }
 }
 
 function mouseDragged() {
-  fractalArt();
+  if (selectPattern == 'fractals') {
+    fractalArt();
+  }
 }
 
 function mouseReleased() {
@@ -103,7 +117,7 @@ function mouseReleased() {
 function keyPressed() {
   if (keyCode == LEFT_ARROW) {
     //print('yo');
-    background(0);
+    background(overallBG);
     pg.pop();
     fractals.pop();
     for (var i = 0; i < pg.length; i++) {

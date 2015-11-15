@@ -88,11 +88,9 @@ function textInstructions() {
 
 function initMusic() {
   for (var i = 0; i < totNotes; i++) {
-    osc[i] = new p5.Oscillator();
-    osc[i].setType('sine');
-    osc[i].freq(freq[i]);
-    osc[i].amp(0);
-    osc[i].start();
+    vol[i] = 0;
+    notes[i].loop();
+    notes[i].setVolume(0);
   }
 }
 
