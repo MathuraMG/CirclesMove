@@ -55,11 +55,7 @@ function preload() {
 }
 
 function setup() {
-
-
   background(overallBG);
-
-  
   setupFnButtons();
   setupSliders();
   setupColorPallete();
@@ -73,23 +69,31 @@ function setup() {
 function draw() {
   //countPixels();
   if (selectPattern == 'circles') {
-    background(overallBG);
-    circleArt(selectX, selectY);
+    //background(overallBG);
+    if (touches.length > 0) {
 
-  }
-  if (selectPattern == 'lines' && brTrue == true) {
+      for (var i = 0; i < touches.length; i++) {
+
+        circleArt(touches[i].x, touches[i].y);
+
+      }
+    } else {
+      circleArt(selectX, selectY);
+    }
+  } else if (selectPattern == 'lines' && brTrue == true) {
     background(overallBG);
     //blendMode(LIGHTEST);
     lineArt(selectX, selectY);
 
-  }
-  textInstructions();
-
-  if (touchIsDown) { //&& selectPattern == 'fractals') {
-    print('hello');
+  } else if (selectPattern == 'fractals') {
+    //print('hello');
     fractalArt();
   }
+  textInstructions();
 }
+
+
+
 
 function mouseDragged() {
   if (selectPattern == 'fractals') {
