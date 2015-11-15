@@ -23,6 +23,8 @@ var colour;
 var pause = false;
 var brCount = 0;
 
+var xsplit, ysplit;
+
 //COLOUR VARIABLES
 var hueStart = 0;
 
@@ -45,19 +47,19 @@ var numLines = 50;
 var linesBr = [];
 var brTrue = false;
 
+var canvasWidth;
+var canvasHeight;
+
 function preload() {
   notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
 }
 
 function setup() {
 
-  fWidth = windowWidth * 0.78;
-  fHeight = windowHeight * 0.83;
-  canvArea = fWidth * fHeight * 0.5 / 100;
 
-  createCanvas(fWidth, fHeight);
   background(overallBG);
 
+  
   setupFnButtons();
   setupSliders();
   setupColorPallete();
@@ -69,7 +71,7 @@ function setup() {
 }
 
 function draw() {
-  // countPixels();
+  //countPixels();
   if (selectPattern == 'circles') {
     background(overallBG);
     circleArt(selectX, selectY);
@@ -83,7 +85,8 @@ function draw() {
   }
   textInstructions();
 
-  if (touchIsDown && selectPattern == 'fractals') {
+  if (touchIsDown) { //&& selectPattern == 'fractals') {
+    print('hello');
     fractalArt();
   }
 }
@@ -131,6 +134,6 @@ function keyPressed() {
     }
   }
   if (keyCode == 32) {
-    pause = !pause;
+    pauseFn();
   }
 }

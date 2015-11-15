@@ -1,68 +1,90 @@
 function setupFnButtons() {
-    a = document.getElementsByClassName('fnBtn');
+  
+  a = document.getElementsByClassName('fnBtn');
+  var xPos = windowWidth * 0.01;
+  var yPos = windowHeight*0.8;
   for (var i = 0; i < a.length; i++) {
-    s = windowWidth * 0.035 + windowWidth * 0.05*i;
+    s = xPos + windowWidth * 0.05 * i;
     s = s + "px";
     a[i].style.position = "absolute";
     a[i].style.left = s;
 
-    h = windowWidth * (3 * 0.11 ) + windowWidth*0.01 ;
+    yPos = windowHeight * 0.8;//(3 * 0.11) + windowWidth * 0.01;
+    yPos = yPos + "px";
+    a[i].style.top = yPos;
+  }
+}
+
+function selectButtonImg() {
+  var xPos;
+  var yPos;
+  size = windowHeight * 0.07;
+  a = document.getElementsByClassName('imgBtn');
+  for (var i = 0; i < a.length; i++) {
+    s = size;
+    s = s + "px";
+    a[i].style.width = s;
+    a[i].style.height = s;
+  }
+  a = document.getElementsByClassName('imgFrBtn');
+  for (var i = 0; i < a.length; i++) {
+    s = size*2;
+    s = s + "px";
+    a[i].style.width = s;
+    a[i].style.height = s;
+  }
+  //position of the pattern selection buttons
+  a = document.getElementsByClassName('selectBtn');
+  for (var i = 0; i < a.length; i++) {
+    s = size;
+    s = s + "px";
+    a[i].style.position = "absolute";
+    a[i].style.left = s;
+
+    h = windowHeight*0.23*i +size*2;
     h = h + "px";
     a[i].style.top = h;
   }
 }
 
 function setupSliders() {
+  var xPos = windowWidth * 0.01;
+  var yPos1 = windowHeight * 0.12;
+  var yPos2 = windowHeight * 0.17;
   xsplit = createSlider(1, 3, 1);
-  xsplit.position(windowWidth * 0.2, windowHeight * 0.875);
+  xsplit.position(xPos, yPos1);
   ysplit = createSlider(1, 3, 1);
-  ysplit.position(windowWidth * 0.2, windowHeight * 0.95);
+  ysplit.position(xPos, yPos2 );
 }
 
 function setupColorPallete() {
+  var size = windowHeight * 0.07;
+  var xPos = windowWidth * 0.01;
+  var yPos = windowHeight * 0.02;
+
   redBtn = createButton('  ');
   redBtn.mousePressed(colorChangeRed);
   redBtn.id('redBtn');
   redBtn.style("background-color", "#ff0000");
-  size = windowHeight * 0.1;
   redBtn.size(size, size);
-  redBtn.position(windowWidth * 0.98 - size, windowHeight * 0.875);
+  redBtn.position(xPos, yPos);
 
   blueBtn = createButton('  ');
   blueBtn.mousePressed(colorChangeBlue);
   blueBtn.id('blueBtn');
   blueBtn.style("background-color", "#0000ff");
   blueBtn.size(size, size);
-  blueBtn.position(windowWidth * 0.98 - size * 2.5, windowHeight * 0.875);
+  blueBtn.position(xPos + size * 1.2, yPos);
 
   greenBtn = createButton('  ');
   greenBtn.mousePressed(colorChangeGreen);
   greenBtn.id('greenBtn');
   greenBtn.style("background-color", "#00ff00");
   greenBtn.size(size, size);
-  greenBtn.position(windowWidth * 0.98 - size * 4, windowHeight * 0.875);
+  greenBtn.position(xPos + size * 2.4, yPos);
 }
 
-function selectButtonImg() {
-  a = document.getElementsByClassName('imgBtn');
-  for (var i = 0; i < a.length; i++) {
-    s = windowWidth * 0.10;
-    s = s + "px";
-    a[i].style.width = s;
-    a[i].style.height = s;
-  }
-  a = document.getElementsByClassName('selectBtn');
-  for (var i = 0; i < a.length; i++) {
-    s = windowWidth * 0.035;
-    s = s + "px";
-    a[i].style.position = "absolute";
-    a[i].style.left = s;
 
-    h = windowWidth * (i * 0.11 ) + windowWidth*0.01 ;
-    h = h + "px";
-    a[i].style.top = h;
-  }
-}
 
 function setupP() {
   instDiv = createP(inst);
@@ -95,6 +117,14 @@ function initMusic() {
 }
 
 function canvasGraphics() {
+  canvasWidth = windowWidth * 0.78;
+  canvasHeight = windowHeight * 0.83;
+
+  fWidth = canvasWidth;
+  fHeight = canvasHeight;
+  canvArea = fWidth * fHeight * 0.5 / 100;
+
+  createCanvas(fWidth, fHeight);
   ctx = canvas.getContext('2d');
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
   pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());

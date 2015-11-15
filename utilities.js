@@ -45,10 +45,17 @@ function colorChangeBlue() {
 }
 
 function setSelect() {
-  selectX = mouseX / xsplit.value();
-  linePosX = mouseX / xsplit.value();
-  selectY = mouseY / ysplit.value();
+  if (mouseX > 0 && mouseX < canvasWidth && mouseY > 0 && mouseY < canvasHeight) {
+    selectX = mouseX / xsplit.value();
+    linePosX = mouseX / xsplit.value();
+    selectY = mouseY / ysplit.value();
+  }
 }
-function changeSelectPattern(a){
+
+function changeSelectPattern(a) {
   selectPattern = a;
+}
+
+function pauseFn() {
+  pause = !pause;
 }
