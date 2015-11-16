@@ -1,15 +1,129 @@
-function setupFnButtons() {
+//HOME PAGE FUNCTIONS 
+/*
+<!--<body>
+  <div id="homePageBack">
+    <button id="fractalBtn" class="selectBtn" onClick="javascript:changeSelectPattern('fractals')"><img class="imgFrBtn" src="assets/frBtn.png"></button>
+    <button id="circlesBtn" class="selectBtn" onClick="javascript:changeSelectPattern('circles')"><img class="imgFrBtn" src="assets/crBtn.png"></button>
+    <button id="brownianBtn" class="selectBtn" onClick="javascript:changeSelectPattern('lines')"><img class="imgFrBtn" src="assets/brBtn.png"></button>
+  </div>--> 
+  */
+
+function drawHomePage() {
   
+  var imgSize = windowHeight/5;
+
+  var homePageText = createDiv('Pick your poison');
+  homePageText.style('color', 'white');
+  homePageText.style('text-align','center');
+  //homePageText.style('position','absolute');
+  //homePageText.style('top','40%');
+  homePageText.style('font-family', 'Arial, Helvetica, sans-serif');
+
+  var homePageBack = createDiv('');
+  homePageBack.position(0, 0);
+  homePageBack.size(windowWidth, windowHeight);
+  homePageBack.style('background-color', 'black', 'z-index', 5);
+  homePageBack.id('homePageBack');
+
+  var button1 = createButton('');
+  button1.class('selectBtn');
+  button1.mouseClicked(function() {
+    changeSelectPattern('fractals');
+  });
+  button1.position(windowWidth/2 - imgSize*2.5,windowHeight/2 - imgSize*0.5);
+  button1.style('background-color', 'transparent');
+  button1.style('border', '0px');
+
+  var button2 = createButton('');
+  button2.class('selectBtn');
+  button2.mouseClicked(function() {
+    changeSelectPattern('circles');
+  });
+  button2.position(windowWidth/2 - imgSize*0.5,windowHeight/2 - imgSize*0.5);
+  button2.style('background-color', 'transparent');
+  button2.style('border', '0px');
+
+  var button3 = createButton('');
+  button3.class('selectBtn');
+  button3.mouseClicked(function() {
+    changeSelectPattern('lines');
+  });
+  button3.position(windowWidth/2 + imgSize*1.5,windowHeight/2 - imgSize*0.5);
+  button3.style('background-color', 'transparent');
+  button3.style('border', '0px');
+
+  var image1 = createImg('assets/frBtn1.png');
+  image1.class('imgFrBtn');
+  image1.size(imgSize, imgSize);
+  var image2 = createImg('assets/crBtn1.png');
+  image2.class('imgFrBtn');
+  image2.size(imgSize, imgSize);
+  var image3 = createImg('assets/brBtn1.png');
+  image3.class('imgFrBtn');
+  image3.size(imgSize, imgSize);
+
+  button1.child(image1);
+  button1.parent(homePageBack);
+  button2.child(image2);
+  button2.parent(homePageBack);
+  button3.child(image3);
+  button3.parent(homePageBack);
+
+  homePageText.parent(homePageBack);
+
+}
+
+
+
+function setupFnButtons() {
+  /*
+  <button id="saveBtn" class="fnBtn" onClick="javascript:saveFn()"><img class="imgBtn" src="assets/saveBtn.png"></button>
+    <button id="refreshBtn" class="fnBtn" onClick="javascript:refreshFn()"><img class="imgBtn" src="assets/refreshBtn.png"></button>
+    <button id="pauseBtn" class="fnBtn" onClick="javascript:pauseFn()"><img id="pauseBtnImg" class="imgBtn" src="assets/pauseBtn.png"></button>
+    */
+
+  var button1 = createButton('');
+  button1.class('fnBtn');
+  button1.mouseClicked(saveFn);
+
+  var button2 = createButton('');
+  button2.class('fnBtn');
+  button2.mouseClicked(refreshFn);
+
+  var button3 = createButton('');
+  button3.class('fnBtn');
+  button3.mouseClicked(pauseFn);
+
+  var button4 = createButton('');
+  button4.class('fnBtn');
+  button4.mouseClicked(goHomeFn);
+
+
+  var image1 = createImg('assets/saveBtn.png');
+  image1.class('imgBtn');
+  var image2 = createImg('assets/refreshBtn.png');
+  image2.class('imgBtn');
+  var image3 = createImg('assets/pauseBtn.png');
+  image3.class('imgBtn');
+  image3.id('pauseBtnImg');
+  var image4 = createImg('assets/homeBtn.png');
+  image4.class('imgBtn');
+
+  button1.child(image1);
+  button2.child(image2);
+  button3.child(image3);
+  button4.child(image4);
+
   a = document.getElementsByClassName('fnBtn');
   var xPos = windowWidth * 0.01;
-  var yPos = windowHeight*0.8;
+  var yPos = windowHeight * 0.8;
   for (var i = 0; i < a.length; i++) {
     s = xPos + windowWidth * 0.05 * i;
     s = s + "px";
     a[i].style.position = "absolute";
     a[i].style.left = s;
 
-    yPos = windowHeight * 0.8;//(3 * 0.11) + windowWidth * 0.01;
+    yPos = windowHeight * 0.8; //(3 * 0.11) + windowWidth * 0.01;
     yPos = yPos + "px";
     a[i].style.top = yPos;
   }
@@ -28,7 +142,7 @@ function selectButtonImg() {
   }
   a = document.getElementsByClassName('imgFrBtn');
   for (var i = 0; i < a.length; i++) {
-    s = size*2;
+    s = size * 2;
     s = s + "px";
     a[i].style.width = s;
     a[i].style.height = s;
@@ -41,7 +155,7 @@ function selectButtonImg() {
     a[i].style.position = "absolute";
     a[i].style.left = s;
 
-    h = windowHeight*0.23*i +size*2;
+    h = windowHeight * 0.23 * i + size * 2;
     h = h + "px";
     a[i].style.top = h;
   }
@@ -54,7 +168,7 @@ function setupSliders() {
   xsplit = createSlider(1, 3, 1);
   xsplit.position(xPos, yPos1);
   ysplit = createSlider(1, 3, 1);
-  ysplit.position(xPos, yPos2 );
+  ysplit.position(xPos, yPos2);
 }
 
 function setupColorPallete() {
@@ -117,14 +231,15 @@ function initMusic() {
 }
 
 function canvasGraphics() {
-  canvasWidth = windowWidth * 0.78;
-  canvasHeight = windowHeight * 0.83;
+  canvasWidth = windowWidth; // * 0.78;
+  canvasHeight = windowHeight; // * 0.83;
 
   fWidth = canvasWidth;
   fHeight = canvasHeight;
   canvArea = fWidth * fHeight * 0.5 / 100;
 
-  createCanvas(fWidth, fHeight);
+  var cvs = createCanvas(fWidth, fHeight);
+  cvs.style('z-index', '-1');
   ctx = canvas.getContext('2d');
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
   pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());

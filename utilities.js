@@ -54,15 +54,24 @@ function setSelect() {
 
 function changeSelectPattern(a) {
   selectPattern = a;
+  var homePageDiv = document.getElementById('homePageBack');
+  homePageDiv.style.display = 'none';
 }
 
 function pauseFn() {
   pause = !pause;
   if(pause==true){
-    var a = document.getElementById('pauseBtnImg');
-    a.src = "assets/playBtn.png";
+    var pauseBtn = document.getElementById('pauseBtnImg');
+    pauseBtn.src = "assets/playBtn.png";
   }else if(pause == false){
-    var a = document.getElementById('pauseBtnImg');
-    a.src = "assets/pauseBtn.png";
+    var pauseBtn = document.getElementById('pauseBtnImg');
+    pauseBtn.src = "assets/pauseBtn.png";
   }
+}
+
+function goHomeFn(){
+  selectPattern = "";
+  var homePageDiv = document.getElementById('homePageBack');
+  homePageDiv.style.display = 'block';
+  refreshFn();
 }

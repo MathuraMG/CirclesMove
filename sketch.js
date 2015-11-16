@@ -51,7 +51,7 @@ var canvasWidth;
 var canvasHeight;
 
 function preload() {
-  notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
+ notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
 }
 
 function setup() {
@@ -63,14 +63,17 @@ function setup() {
   initMusic();
   canvasGraphics();
   selectButtonImg();
+  drawHomePage();
 
 }
 
 function draw() {
 
+
+
   if (selectPattern == 'circles') {
     //background(overallBG);
-    print(touches.length);
+    //print(touches.length);
     if (touches.length > 0) {
 
       for (var i = 0; i < touches.length; i++) {
@@ -88,6 +91,7 @@ function draw() {
 
   }
   textInstructions();
+
 }
 
 function mouseDragged() {
