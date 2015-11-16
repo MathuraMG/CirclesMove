@@ -60,18 +60,35 @@ function changeSelectPattern(a) {
 
 function pauseFn() {
   pause = !pause;
-  if(pause==true){
+  if (pause == true) {
     var pauseBtn = document.getElementById('pauseBtnImg');
-    pauseBtn.src = "assets/playBtn.png";
-  }else if(pause == false){
+    pauseBtn.src = "assets/playBtn1.png";
+  } else if (pause == false) {
     var pauseBtn = document.getElementById('pauseBtnImg');
-    pauseBtn.src = "assets/pauseBtn.png";
+    pauseBtn.src = "assets/pauseBtn1.png";
   }
 }
 
-function goHomeFn(){
+function goHomeFn() {
   selectPattern = "";
   var homePageDiv = document.getElementById('homePageBack');
   homePageDiv.style.display = 'block';
   refreshFn();
+}
+
+function selectHueColor(paletteX, paletteY,hs) {
+  colorMode(HSB);
+  var r = dist(mouseX, mouseY, paletteX, paletteY);
+  var hue = hs ;
+  if (r > 20 && r < 50) {
+    var angle = atan((mouseY - paletteY) / (mouseX - paletteX));
+    //angle = map(angle,-3.1428,3.1428,0,180);
+    if (mouseX < paletteX)
+      hue = angle + 90 + 180;
+    else
+      hue = angle + 90;
+
+    //print(floor(hue));
+  }
+  return (hue);
 }

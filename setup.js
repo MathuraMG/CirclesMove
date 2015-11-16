@@ -10,7 +10,7 @@
 
 function drawHomePage() {
   
-  var imgSize = windowHeight/5;
+  var imgSize = windowHeight/6;
 
   var homePageText = createDiv('Pick your poison');
   homePageText.style('color', 'white');
@@ -85,28 +85,37 @@ function setupFnButtons() {
   var button1 = createButton('');
   button1.class('fnBtn');
   button1.mouseClicked(saveFn);
+  button1.style('background-color', 'transparent');
+  button1.style('border', '0px');
+  
 
   var button2 = createButton('');
   button2.class('fnBtn');
   button2.mouseClicked(refreshFn);
+  button2.style('background-color', 'transparent');
+  button2.style('border', '0px');
 
   var button3 = createButton('');
   button3.class('fnBtn');
   button3.mouseClicked(pauseFn);
+  button3.style('background-color', 'transparent');
+  button3.style('border', '0px');
 
   var button4 = createButton('');
   button4.class('fnBtn');
   button4.mouseClicked(goHomeFn);
+  button4.style('background-color', 'transparent');
+  button4.style('border', '0px');
 
 
-  var image1 = createImg('assets/saveBtn.png');
+  var image1 = createImg('assets/saveBtn1.png');
   image1.class('imgBtn');
-  var image2 = createImg('assets/refreshBtn.png');
+  var image2 = createImg('assets/refreshBtn1.png');
   image2.class('imgBtn');
-  var image3 = createImg('assets/pauseBtn.png');
+  var image3 = createImg('assets/pauseBtn1.png');
   image3.class('imgBtn');
   image3.id('pauseBtnImg');
-  var image4 = createImg('assets/homeBtn.png');
+  var image4 = createImg('assets/homeBtn1.png');
   image4.class('imgBtn');
 
   button1.child(image1);
@@ -244,4 +253,21 @@ function canvasGraphics() {
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
   pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
   pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+}
+
+function drawPalette(centerX, centerY) {
+  push();
+  //print('drawing palette');
+  //background(0);
+  angleMode(DEGREES);
+  colorMode(HSB);
+  translate(centerX, centerY);
+  for (var i = 0; i < 360; i++) {
+    rotate(1);
+    stroke(i, 70, 70);
+    line(0, 0, 0, -50);
+  }
+  pop();
+  fill(0);
+  ellipse(centerX, centerY, 40, 40);
 }

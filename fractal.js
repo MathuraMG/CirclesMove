@@ -15,8 +15,8 @@ function circleArt(selectX, selectY) {
   }
 }
 
-function lineArt(selectX, selectY) {
-  blendMode(LIGHTEST);
+function lineArt(selectX, selectY,hs) {
+  //blendMode(LIGHTEST);
   if (pause == false) {
     brCount++;
     if ((brCount - 1) % numLines == 0) {
@@ -27,7 +27,7 @@ function lineArt(selectX, selectY) {
       linesBr[((brCount - 1) / numLines) + 1] = l;
     } else {
       a = floor(((brCount - 1) / numLines));
-      curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines, hueStart, pgThree);
+      curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines, hs, pgThree);
     }
   }
   for (var a = 0; a < xsplit.value(); a++) {
@@ -35,6 +35,7 @@ function lineArt(selectX, selectY) {
       image(pgThree, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
     }
   }
+  //drawPalette(100,500);
 }
 
 function fractalArt() {
@@ -59,7 +60,7 @@ function fractalArt() {
       var circleSize = canvasWidth/17 - distFromCenter / 8;
 
 
-      circleHue = map(distFromCenter, 0, sqrt((canvasWidth*canvasWidth+canvasHeight*canvasHeight))/4, hueStart, hueStart + 50);
+      circleHue = map(distFromCenter, 0, sqrt((canvasWidth*canvasWidth+canvasHeight*canvasHeight)/4), hueStart, hueStart + 50);
       pgOne = createGraphics(cWidth, cHeight);
       cS = map(distFromCenter, 0, 350, 10, 70);
 
@@ -84,12 +85,12 @@ function fractalArt() {
   }
 
 }
-function curvesBW(lines1, lines2, i, hueStart,pgThree) {
+function curvesBW(lines1, lines2, i, hs,pgThree) {
   //for (var i = 0; i < 50; i++) {
   l = new elt();
   l.init(mouseX,mouseY,pgThree);
   colorMode(HSB);
-  pgThree.stroke(hueStart + abs((frameCount % 100) - 50), 100, 100, 50);
+  pgThree.stroke(hs + abs((frameCount % 100) - 50), 100, 100, 50);
   for (var a = 1; a < lines2.ax.length; a++) {
 
     l.ax[a] = lines1.ax[a] + ((lines2.ax[a] - lines1.ax[a]) / numLines) * i;
@@ -98,7 +99,7 @@ function curvesBW(lines1, lines2, i, hueStart,pgThree) {
     l.lay[a] = lines1.lay[a] + ((lines2.lay[a] - lines1.lay[a]) / numLines) * i;
     pgThree.strokeWeight(0.5);
 
-    noFill();
+    //noFill();
     pgThree.line(l.ax[a], l.ay[a], l.ax[a - 1], l.ay[a - 1]);
     pgThree.line(l.lax[a], l.lay[a], l.lax[a - 1], l.lay[a - 1]);
     //arc(l.ax[a], l.ay[a], dist(l.ax[a - 1], l.ay[a - 1],l.ax[a], l.ay[a]), random(5,10),random(0,0.5), random(0.5,1));

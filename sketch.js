@@ -9,6 +9,7 @@ var inst = 'potato';
 var instDiv;
 var overallBG = 0;
 
+
 var selectPattern = "";
 
 //DRAWING VARIABLES
@@ -50,26 +51,29 @@ var brTrue = false;
 var canvasWidth;
 var canvasHeight;
 
+var paletteX, paletteY;
+
 function preload() {
- notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
+  notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
 }
 
 function setup() {
   background(overallBG);
   setupFnButtons();
   setupSliders();
-  setupColorPallete();
+  //setupColorPallete();
+
   setupP();
   initMusic();
   canvasGraphics();
   selectButtonImg();
   drawHomePage();
+  paletteX = 100;
+  paletteY = windowHeight - 100;
 
 }
 
 function draw() {
-
-
 
   if (selectPattern == 'circles') {
     //background(overallBG);
@@ -85,11 +89,12 @@ function draw() {
       circleArt(selectX, selectY);
     }
   } else if (selectPattern == 'lines' && brTrue == true) {
-    background(overallBG);
+    //background(overallBG);
     //blendMode(LIGHTEST);
-    lineArt(selectX, selectY);
+    lineArt(selectX, selectY, hueStart);
 
   }
+  drawPalette(paletteX, paletteY);
   textInstructions();
 
 }
@@ -101,11 +106,13 @@ function mouseDragged() {
 }
 
 function mouseReleased() {
+  hueStart = selectHueColor(paletteX, paletteY, hueStart);
+
   if (selectPattern == 'lines') {
-    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+    if (mouseX < 150 && mouseY > height - 150) {} else {
       linesBr = [];
       brCount = 0;
-      //blendMode(LIGHTEST);
+      blendMode(LIGHTEST);
       l = new elt();
       setSelect();
       l.init(selectX, selectY);
@@ -116,7 +123,9 @@ function mouseReleased() {
     }
 
   } else {
-    setSelect();
+    if (mouseX < 150 && mouseY > height - 150) {} else {
+      setSelect();
+    }
   }
 }
 
@@ -139,4 +148,4 @@ function keyPressed() {
   if (keyCode == 32) {
     pauseFn();
   }
-}
+}                                                                                          
