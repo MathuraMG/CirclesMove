@@ -1,3 +1,36 @@
+/***********************************************
+ * MUSIC RELATED *
+ ***********************************************/
+
+function countPixels() {
+  countPixel = 0;
+  imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  for (var i = 0; i < windowWidth*0.78; i = i + 10) {
+    for (var j = 0; j < windowHeight*0.83; j = j + 10) {
+
+      colour = getPixelXY(imgData, i, j)[0];
+      if (colour == 0) {
+
+      } else {
+        countPixel++;
+      }
+
+    }
+  }
+   print(countPixel);
+  var musicrange = canvArea/3;
+  if (countPixel < musicrange*3) {
+    if (countPixel > musicrange*2 && countPixel < musicrange*3) {
+      notes[2].amp((countPixel - musicrange*2) / musicrange*5);
+    } else if (countPixel > musicrange*1 && countPixel < musicrange*2) {
+      notes[1].amp((countPixel - musicrange*1) / musicrange*5);
+    } else if (countPixel > musicrange*0 && countPixel < musicrange*1) {
+      notes[0].amp((countPixel - musicrange*0) / musicrange*5);
+    }
+  }
+}
+
+
 function makeMusic() {
   var toneValue;
   posX = (posX + 1) % 800;

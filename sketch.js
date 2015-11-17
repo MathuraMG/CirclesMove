@@ -7,6 +7,10 @@ var fHeight = 800;
 var flag = 0;
 var inst = 'potato';
 var instDiv;
+var overallBG = 0;
+
+
+var selectPattern = "";
 
 //DRAWING VARIABLES
 var circles = [];
@@ -14,11 +18,14 @@ var fractals = [];
 var count = 0;
 var pg = [];
 var pgOne;
+
 var gridGraph;
 var linePosX = 0;
 var colour;
 var pause = false;
 var brCount = 0;
+
+var xsplit, ysplit;
 
 //COLOUR VARIABLES
 var hueStart = 0;
@@ -27,11 +34,13 @@ var hueStart = 0;
 var freq = [261, 329, 392, 440, 523];
 var vol = [];
 var osc = [];
-var totNotes = 5;
+var notes = [];
+var totNotes = 3;
 var imgData;
 var ctx;
 var posX = 0;
 var selectX, selectY;
+var canvArea;
 
 //BROWNIAN VARIABLES
 var num = 100;
@@ -40,47 +49,67 @@ var numLines = 50;
 var linesBr = [];
 var brTrue = false;
 
+var canvasWidth;
+var canvasHeight;
+
+var paletteX, paletteY;
+
+function preload() {
+  notes = [loadSound('assets/bass.mp3'), loadSound('assets/drums.mp3'), loadSound('assets/piano.mp3')];
+}
+
 function setup() {
-
-  fWidth = windowWidth;
-  fHeight = windowHeight - 100;
-
-  createCanvas(fWidth, fHeight);
-  background(255);
-
-  setupButtons();
+  background(overallBG);
+  setupFnButtons();
   setupSliders();
-  setupDropDown();
-  setupColorPallete();
+  //setupColorPallete();
+
   setupP();
   initMusic();
   canvasGraphics();
+  selectButtonImg();
+  drawHomePage();
+  paletteX = 100;
+  paletteY = windowHeight - 150;
 
 }
 
 function draw() {
 
-  if (abc.value() == 'circles') {
-    background(255);
-    circleArt(selectX, selectY);
+  if (selectPattern == 'circles') {
+    //background(overallBG);
+    //print(touches.length);
+    if (touches.length > 0) {
 
-  }
-  if (abc.value() == 'lines' && brTrue == true) {
-    background(255);
+      for (var i = 0; i < touches.length; i++) {
+
+        circleArt(touches[i].x, touches[i].y);
+
+      }
+    } else {
+      circleArt(selectX, selectY);
+    }
+  } else if (selectPattern == 'lines' && brTrue == true) {
+    background(overallBG);
     //blendMode(LIGHTEST);
-    lineArt(selectX, selectY);
+    lineArt(selectX, selectY, hueStart);
 
   }
+  //blendMode(BLEND );
+  drawPalette(paletteX, paletteY);
   textInstructions();
+
 }
 
 function mouseDragged() {
-  fractalArt();
+
 }
 
 function mouseReleased() {
-  if (abc.value() == 'lines') {
-    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+  hueStart = selectHueColor(paletteX, paletteY, hueStart);
+
+  if (selectPattern == 'lines') {
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
       linesBr = [];
       brCount = 0;
       //blendMode(LIGHTEST);
@@ -93,15 +122,23 @@ function mouseReleased() {
       brTrue = true;
     }
 
+  } else if (selectPattern == 'fractals') {
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
+      setSelect();
+      fractalArt(selectX, selectY);
+
+    }
   } else {
-    setSelect();
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
+      setSelect();
+    }
   }
 }
 
 function keyPressed() {
   if (keyCode == LEFT_ARROW) {
     //print('yo');
-    background(255);
+    background(overallBG);
     pg.pop();
     fractals.pop();
     for (var i = 0; i < pg.length; i++) {
@@ -115,6 +152,6 @@ function keyPressed() {
     }
   }
   if (keyCode == 32) {
-    pause = !pause;
+    pauseFn();
   }
 }
