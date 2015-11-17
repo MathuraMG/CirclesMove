@@ -102,9 +102,7 @@ function draw() {
 }
 
 function mouseDragged() {
-  if (selectPattern == 'fractals') {
-    fractalArt();
-  }
+
 }
 
 function mouseReleased() {
@@ -124,6 +122,12 @@ function mouseReleased() {
       brTrue = true;
     }
 
+  } else if (selectPattern == 'fractals') {
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
+      setSelect();
+      fractalArt(selectX, selectY);
+
+    }
   } else {
     if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
       setSelect();

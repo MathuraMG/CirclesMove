@@ -12,7 +12,7 @@ function drawHomePage() {
 
   var imgSize = windowHeight / 6;
 
-  var homePageText = createDiv('Pick your poison');
+  var homePageText = createDiv('Pick your math');
   homePageText.style('color', 'white');
   homePageText.style('text-align', 'center');
   homePageText.style('position', 'absolute');
@@ -231,7 +231,7 @@ function textInstructions() {
   if (selectPattern == 'circles') {
     inst = ' Press space to pause the drawing and move your mouse about the canvas to change size and colour';
   } else if (selectPattern == 'fractals') {
-    inst = ' Drag mouse on canvas to get fractals of different shape and colour. Press left arrow to delete previous fractal';
+    inst = ' Click on the canvas to get a fractal burst';
   } else if (selectPattern == 'lines') {
     inst = ' Click on the canvas to create a brownian motion. Press space to pause';
   } else {
