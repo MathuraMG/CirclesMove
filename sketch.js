@@ -77,7 +77,7 @@ function setup() {
 function draw() {
 
   if (selectPattern == 'circles') {
-    //background(overallBG);
+    background(overallBG);
     //print(touches.length);
     if (touches.length > 0) {
 
