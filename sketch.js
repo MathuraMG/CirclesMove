@@ -18,6 +18,7 @@ var fractals = [];
 var count = 0;
 var pg = [];
 var pgOne;
+
 var gridGraph;
 var linePosX = 0;
 var colour;
@@ -69,7 +70,7 @@ function setup() {
   selectButtonImg();
   drawHomePage();
   paletteX = 100;
-  paletteY = windowHeight - 100;
+  paletteY = windowHeight - 150;
 
 }
 
@@ -89,11 +90,12 @@ function draw() {
       circleArt(selectX, selectY);
     }
   } else if (selectPattern == 'lines' && brTrue == true) {
-    //background(overallBG);
+    background(overallBG);
     //blendMode(LIGHTEST);
     lineArt(selectX, selectY, hueStart);
 
   }
+  //blendMode(BLEND );
   drawPalette(paletteX, paletteY);
   textInstructions();
 
@@ -109,10 +111,10 @@ function mouseReleased() {
   hueStart = selectHueColor(paletteX, paletteY, hueStart);
 
   if (selectPattern == 'lines') {
-    if (mouseX < 150 && mouseY > height - 150) {} else {
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
       linesBr = [];
       brCount = 0;
-      blendMode(LIGHTEST);
+      //blendMode(LIGHTEST);
       l = new elt();
       setSelect();
       l.init(selectX, selectY);
@@ -123,7 +125,7 @@ function mouseReleased() {
     }
 
   } else {
-    if (mouseX < 150 && mouseY > height - 150) {} else {
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
       setSelect();
     }
   }
@@ -148,4 +150,4 @@ function keyPressed() {
   if (keyCode == 32) {
     pauseFn();
   }
-}                                                                                          
+}

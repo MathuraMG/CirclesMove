@@ -24,12 +24,18 @@ function gridFn() {
 }
 
 function refreshFn() {
+  //blendMode(BLEND );
   pg = [];
+ // pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  //pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
   pgTwo.background(overallBG);
   pgThree.background(overallBG);
+  
   fractals = [];
   linePosX = 0;
-  background(overallBG);
+  brCount = 0;
+ background(overallBG);
+
 }
 
 function colorChangeRed() {
@@ -59,7 +65,7 @@ function changeSelectPattern(a) {
 }
 
 function pauseFn() {
-  pause = !pause;
+  pause = !pause; 
   if (pause == true) {
     var pauseBtn = document.getElementById('pauseBtnImg');
     pauseBtn.src = "assets/playBtn1.png";

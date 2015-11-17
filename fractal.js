@@ -6,7 +6,7 @@ function circleArt(selectX, selectY) {
   }
   push();
   colorMode(RGB);
-  background(overallBG);
+  //background(overallBG);
   pop();
   for (var a = 0; a < xsplit.value(); a++) {
     for (var b = 0; b < ysplit.value(); b++) {
@@ -30,12 +30,13 @@ function lineArt(selectX, selectY,hs) {
       curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines, hs, pgThree);
     }
   }
+
   for (var a = 0; a < xsplit.value(); a++) {
     for (var b = 0; b < ysplit.value(); b++) {
       image(pgThree, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
     }
   }
-  //drawPalette(100,500);
+ drawPalette(paletteX, paletteY); 
 }
 
 function fractalArt() {
@@ -65,7 +66,7 @@ function fractalArt() {
       cS = map(distFromCenter, 0, 350, 10, 70);
 
       f = new fractalCircle(xPoint, yPoint, circleSize, circleHue, pgOne);
-      print(xPoint+','+yPoint);
+      //print(xPoint+','+yPoint);
 
       f.drawFractal();
 

@@ -9,15 +9,18 @@
   */
 
 function drawHomePage() {
-  
-  var imgSize = windowHeight/6;
+
+  var imgSize = windowHeight / 6;
 
   var homePageText = createDiv('Pick your poison');
   homePageText.style('color', 'white');
-  homePageText.style('text-align','center');
-  //homePageText.style('position','absolute');
-  //homePageText.style('top','40%');
-  homePageText.style('font-family', 'Arial, Helvetica, sans-serif');
+  homePageText.style('text-align', 'center');
+  homePageText.style('position', 'absolute');
+  homePageText.style('width', '100%');
+  homePageText.style('top', '20%');
+  homePageText.style('font-family', 'Raleway');
+  homePageText.style('font-weight', '200');
+  homePageText.style('font-size', '72px');
 
   var homePageBack = createDiv('');
   homePageBack.position(0, 0);
@@ -30,7 +33,7 @@ function drawHomePage() {
   button1.mouseClicked(function() {
     changeSelectPattern('fractals');
   });
-  button1.position(windowWidth/2 - imgSize*2.5,windowHeight/2 - imgSize*0.5);
+  button1.position(windowWidth / 2 - imgSize * 2.5, windowHeight / 2 - imgSize * 0.5);
   button1.style('background-color', 'transparent');
   button1.style('border', '0px');
 
@@ -39,7 +42,7 @@ function drawHomePage() {
   button2.mouseClicked(function() {
     changeSelectPattern('circles');
   });
-  button2.position(windowWidth/2 - imgSize*0.5,windowHeight/2 - imgSize*0.5);
+  button2.position(windowWidth / 2 - imgSize * 0.5, windowHeight / 2 - imgSize * 0.5);
   button2.style('background-color', 'transparent');
   button2.style('border', '0px');
 
@@ -48,7 +51,7 @@ function drawHomePage() {
   button3.mouseClicked(function() {
     changeSelectPattern('lines');
   });
-  button3.position(windowWidth/2 + imgSize*1.5,windowHeight/2 - imgSize*0.5);
+  button3.position(windowWidth / 2 + imgSize * 1.5, windowHeight / 2 - imgSize * 0.5);
   button3.style('background-color', 'transparent');
   button3.style('border', '0px');
 
@@ -87,7 +90,7 @@ function setupFnButtons() {
   button1.mouseClicked(saveFn);
   button1.style('background-color', 'transparent');
   button1.style('border', '0px');
-  
+
 
   var button2 = createButton('');
   button2.class('fnBtn');
@@ -124,15 +127,15 @@ function setupFnButtons() {
   button4.child(image4);
 
   a = document.getElementsByClassName('fnBtn');
-  var xPos = windowWidth * 0.01;
-  var yPos = windowHeight * 0.8;
+  var xPos = windowWidth * 0.8;
+  //var yPos = windowHeight * 0.8;
   for (var i = 0; i < a.length; i++) {
     s = xPos + windowWidth * 0.05 * i;
     s = s + "px";
     a[i].style.position = "absolute";
     a[i].style.left = s;
 
-    yPos = windowHeight * 0.8; //(3 * 0.11) + windowWidth * 0.01;
+    yPos = windowHeight * 0.85; //(3 * 0.11) + windowWidth * 0.01;
     yPos = yPos + "px";
     a[i].style.top = yPos;
   }
@@ -171,9 +174,9 @@ function selectButtonImg() {
 }
 
 function setupSliders() {
-  var xPos = windowWidth * 0.01;
-  var yPos1 = windowHeight * 0.12;
-  var yPos2 = windowHeight * 0.17;
+  var xPos = 20; //windowWidth * 0.01;
+  var yPos1 = windowHeight - 70;
+  var yPos2 = windowHeight - 40;
   xsplit = createSlider(1, 3, 1);
   xsplit.position(xPos, yPos1);
   ysplit = createSlider(1, 3, 1);
@@ -212,8 +215,16 @@ function setupColorPallete() {
 function setupP() {
   instDiv = createP(inst);
   instDiv.style('color', 'white'); //,'background-color','black');
-  instDiv.position(250, 0);
+  instDiv.position(canvasHeight - 24, 0);
   instDiv.id('instructions');
+  instDiv.style('color', 'white');
+
+  instDiv.style('position', 'absolute');
+
+
+  instDiv.style('font-family', 'Raleway');
+  instDiv.style('font-weight', '200');
+  instDiv.style('font-size', '22px');
 }
 
 function textInstructions() {
@@ -252,16 +263,20 @@ function canvasGraphics() {
   ctx = canvas.getContext('2d');
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
   pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  //pgTwo.style('z-index', '-2');
   pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  // pgThree.style('z-index', '-2');
 }
 
 function drawPalette(centerX, centerY) {
   push();
   //print('drawing palette');
   //background(0);
+
   angleMode(DEGREES);
   colorMode(HSB);
   translate(centerX, centerY);
+  strokeWeight(10);
   for (var i = 0; i < 360; i++) {
     rotate(1);
     stroke(i, 70, 70);
