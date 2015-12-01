@@ -70,7 +70,7 @@ function setup() {
   selectButtonImg();
   drawHomePage();
   paletteX = 100;
-  paletteY = windowHeight - 150;
+  paletteY = windowHeight - 75;
 
 }
 
