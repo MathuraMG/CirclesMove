@@ -61,7 +61,7 @@ function preload() {
 function setup() {
   background(overallBG);
   setupFnButtons();
-  setupSliders();
+  //setupSliders();
   //setupColorPallete();
 
   setupP();
@@ -144,11 +144,11 @@ function keyPressed() {
     fractals.pop();
     for (var i = 0; i < pg.length; i++) {
 
-      for (var a = 0; a < xsplit.value(); a++) {
-        for (var b = 0; b < ysplit.value(); b++) {
+      //for (var a = 0; a < xsplit.value(); a++) {
+        //for (var b = 0; b < ysplit.value(); b++) {
           image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
-        }
-      }
+        //}
+      //}
 
     }
   }

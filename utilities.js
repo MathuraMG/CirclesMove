@@ -52,9 +52,9 @@ function colorChangeBlue() {
 
 function setSelect() {
   if (mouseX > 0 && mouseX < canvasWidth && mouseY > 0 && mouseY < canvasHeight) {
-    selectX = mouseX / xsplit.value();
-    linePosX = mouseX / xsplit.value();
-    selectY = mouseY / ysplit.value();
+    selectX = mouseX ;/// xsplit.value();
+    linePosX = mouseX ;/// xsplit.value();
+    selectY = mouseY ;/// ysplit.value();
   }
 }
 

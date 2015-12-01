@@ -262,9 +262,9 @@ function canvasGraphics() {
   cvs.style('z-index', '-1');
   ctx = canvas.getContext('2d');
   imgData = ctx.getImageData(0, 0, fWidth, fHeight)
-  pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  pgTwo = createGraphics(fWidth, fHeight);
   //pgTwo.style('z-index', '-2');
-  pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  pgThree = createGraphics(fWidth, fHeight);
   // pgThree.style('z-index', '-2');
 }
 
