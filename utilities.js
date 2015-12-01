@@ -26,15 +26,15 @@ function gridFn() {
 function refreshFn() {
   //blendMode(BLEND );
   pg = [];
- // pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
+  // pgTwo = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
   //pgThree = createGraphics(fWidth / xsplit.value(), fHeight / ysplit.value());
   pgTwo.background(overallBG);
   pgThree.background(overallBG);
-  
+
   fractals = [];
   linePosX = 0;
   brCount = 0;
- background(overallBG);
+  background(overallBG);
 
 }
 
@@ -65,7 +65,7 @@ function changeSelectPattern(a) {
 }
 
 function pauseFn() {
-  pause = !pause; 
+  pause = !pause;
   if (pause == true) {
     var pauseBtn = document.getElementById('pauseBtnImg');
     pauseBtn.src = "assets/playBtn1.png";
@@ -82,17 +82,20 @@ function goHomeFn() {
   refreshFn();
 }
 
-function selectHueColor(paletteX, paletteY,hs) {
+function selectHueColor(paletteX, paletteY, hs) {
   colorMode(HSB);
   var r = dist(mouseX, mouseY, paletteX, paletteY);
-  var hue = hs ;
+  var hue = hs;
   if (r > 20 && r < 50) {
     var angle = atan((mouseY - paletteY) / (mouseX - paletteX));
     //angle = map(angle,-3.1428,3.1428,0,180);
-    if (mouseX < paletteX)
+    if (mouseX < paletteX) {
       hue = angle + 90 + 180;
-    else
+
+    } else {
       hue = angle + 90;
+    }
+    
 
     //print(floor(hue));
   }

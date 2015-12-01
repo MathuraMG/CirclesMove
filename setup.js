@@ -12,7 +12,7 @@ function drawHomePage() {
 
   var imgSize = windowHeight / 6;
 
-  var homePageText = createDiv('Pick your math');
+  var homePageText = createDiv('Pick your poison');
   homePageText.style('color', 'white');
   homePageText.style('text-align', 'center');
   homePageText.style('position', 'absolute');
@@ -276,7 +276,7 @@ function drawPalette(centerX, centerY) {
   angleMode(DEGREES);
   colorMode(HSB);
   translate(centerX, centerY);
-  strokeWeight(10);
+  strokeWeight(1);
   for (var i = 0; i < 360; i++) {
     rotate(1);
     stroke(i, 70, 70);
@@ -285,4 +285,17 @@ function drawPalette(centerX, centerY) {
   pop();
   fill(0);
   ellipse(centerX, centerY, 40, 40);
+}
+
+function drawPaletteMarker(centerX, centerY, hueStart) {
+  push();
+  angleMode(DEGREES);
+  colorMode(RGB);
+  translate(centerX, centerY);
+  rotate(hueStart+180);
+  noStroke();
+  fill(255);
+  ellipse(0, 35, 10, 10);
+  pop();
+
 }

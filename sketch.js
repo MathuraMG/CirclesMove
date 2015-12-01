@@ -97,6 +97,7 @@ function draw() {
   }
   //blendMode(BLEND );
   drawPalette(paletteX, paletteY);
+  drawPaletteMarker(paletteX, paletteY,hueStart);
   textInstructions();
 
 }
