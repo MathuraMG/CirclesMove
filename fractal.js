@@ -1,18 +1,18 @@
 function circleArt(selectX, selectY) {
   if (pause == false) {
     linePosX++;
-    f = new circleArtPiece((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * xsplit.value()), (mouseY - height / 2) / 2 * (ysplit.value()), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
+    f = new circleArtPiece((linePosX) % (width + 100), selectY, (mouseY - height / 2) / (2 * 1), (mouseY - height / 2) / 2 * (1), hueStart + map(mouseX, 0, width, 0, 50), pgTwo);
     f.drawFractal();
   }
   push();
   colorMode(RGB);
   //background(overallBG);
   pop();
-  for (var a = 0; a < xsplit.value(); a++) {
-    for (var b = 0; b < ysplit.value(); b++) {
-      image(pgTwo, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
-    }
-  }
+  //for (var a = 0; a < xsplit.value(); a++) {
+    //for (var b = 0; b < ysplit.value(); b++) {
+      image(pgTwo, 0 , 0,  fWidth , fHeight );
+    //}
+  //}
 }
 
 function lineArt(selectX, selectY, hs) {
@@ -31,11 +31,11 @@ function lineArt(selectX, selectY, hs) {
     }
   }
 
-  for (var a = 0; a < xsplit.value(); a++) {
-    for (var b = 0; b < ysplit.value(); b++) {
-      image(pgThree, a * fWidth / xsplit.value(), b * fHeight / ysplit.value(), fWidth / xsplit.value(), fHeight / ysplit.value());
-    }
-  }
+  //for (var a = 0; a < xsplit.value(); a++) {
+    //for (var b = 0; b < ysplit.value(); b++) {
+      image(pgThree,  0,  0, fWidth, fHeight);
+    //}
+  //}
   drawPalette(paletteX, paletteY);
 }
 
@@ -51,8 +51,8 @@ function fractalArtOld() {
   if (xPoint < cWidth && yPoint < cHeight && xPoint > 0 && yPoint > 0) {
     if (selectPattern == 'fractals') {
       background(overallBG);
-      cWidth = fWidth / xsplit.value();
-      cHeight = fHeight / ysplit.value();
+      cWidth = fWidth / 1;// xsplit.value();
+      cHeight = fHeight / 1;// ysplit.value();
       push();
       colorMode(HSB);
       var distFromCenter = dist(xPoint, yPoint, canvasWidth / 2, canvasHeight / 2);
@@ -72,11 +72,11 @@ function fractalArtOld() {
       fractals.push(f);
       pop();
       for (var i = 0; i < pg.length; i++) {
-        for (var a = 0; a < xsplit.value(); a++) {
-          for (var b = 0; b < ysplit.value(); b++) {
-            image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
-          }
-        }
+        //for (var a = 0; a < xsplit.value(); a++) {
+          //for (var b = 0; b < ysplit.value(); b++) {
+            image(pg[i], 0, 0, cWidth, cHeight);
+          //}
+        //}
       }
 
     }
@@ -90,8 +90,8 @@ function fractalArt(xPoint, yPoint) {
 
 
   background(overallBG);
-  cWidth = fWidth / xsplit.value();
-  cHeight = fHeight / ysplit.value();
+  cWidth = fWidth / 1;//xsplit.value();
+  cHeight = fHeight / 1;//ysplit.value();
   push();
   colorMode(HSB);
   var distFromCenter = dist(xPoint, yPoint, canvasWidth / 2, canvasHeight / 2);
@@ -115,11 +115,11 @@ function fractalArt(xPoint, yPoint) {
 
   pop();
   for (var i = 0; i < pg.length; i++) {
-    for (var a = 0; a < xsplit.value(); a++) {
-      for (var b = 0; b < ysplit.value(); b++) {
-        image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
-      }
-    }
+    //for (var a = 0; a < xsplit.value(); a++) {
+      //for (var b = 0; b < ysplit.value(); b++) {
+        image(pg[i], 0, 0, cWidth, cHeight);
+      //}
+    //}
 
     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   }
