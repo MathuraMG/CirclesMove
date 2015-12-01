@@ -1,7 +1,7 @@
 function saveFn() {
   push();
   colorMode(RGB);
-  noStroke();
+  stroke(0);
   fill(0);
   ellipse(paletteX, paletteY,100,100);
   pop();
