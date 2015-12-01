@@ -1,4 +1,5 @@
 function saveFn() {
+  ellipse(paletteX, paletteY,100,100);
   saveCanvas('part', 'png');
 }
 
