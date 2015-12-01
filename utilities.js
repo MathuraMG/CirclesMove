@@ -1,6 +1,11 @@
 function saveFn() {
+  push();
+  colorMode(RGB);
+  noStroke();
+  fill(0);
   ellipse(paletteX, paletteY,100,100);
-  saveCanvas('part', 'png');
+  pop();
+  saveCanvas('pattern', 'png');
 }
 
 function gridFn() {
