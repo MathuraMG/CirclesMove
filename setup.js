@@ -27,6 +27,8 @@ function drawHomePage() {
   homePageBack.size(windowWidth, windowHeight);
   homePageBack.style('background-color', 'black', 'z-index', 5);
   homePageBack.id('homePageBack');
+  
+  
 
   var button1 = createButton('');
   button1.class('selectBtn');
@@ -99,6 +101,15 @@ function drawHomePage() {
   homePageText1.parent(homePageBack);
   homePageText2.parent(homePageBack);
   homePageText3.parent(homePageBack);
+  
+  var exampleLink = createA('assets/examples.png','Examples');
+  exampleLink.style('z-index',5);
+  exampleLink.size(10,10);
+  exampleLink.style('font-family', 'Raleway');
+  exampleLink.style('font-weight', '200');
+  exampleLink.style('font-size', '18px');
+  exampleLink.style('color', 'white');
+  exampleLink.parent(homePageBack);
 
 }
 

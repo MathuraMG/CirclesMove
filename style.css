@@ -17,3 +17,7 @@ canvas {
 button.fnBtn:hover {
   background-color: white;
 }
+
+a#exampleImage{
+  z-index: 10000;
+}
