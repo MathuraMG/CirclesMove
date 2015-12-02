@@ -102,7 +102,7 @@ function drawHomePage() {
   homePageText2.parent(homePageBack);
   homePageText3.parent(homePageBack);
   
-  var exampleLink = createA('assets/examples.png','Examples');
+  var exampleLink = createA('assets/examples.jpg','Examples');
   exampleLink.style('z-index',5);
   exampleLink.size(10,10);
   exampleLink.style('font-family', 'Raleway');
