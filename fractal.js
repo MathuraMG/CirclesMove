@@ -88,12 +88,12 @@ function fractalArt(xPoint, yPoint) {
   circleHue = hueStart; //map(distFromCenter, 0, sqrt((canvasWidth * canvasWidth + canvasHeight * canvasHeight) / 4), hueStart, hueStart + 50);
   pgOne = createGraphics(cWidth, cHeight);
   cS = map(distFromCenter, 0, 350, 10, 70);
-  //var rand = random(3, 5);
-  //for (var i = 0; i < rand; i++) {
-  f = new fractalCircle(xPoint, yPoint, circleSize, circleHue, pgOne);
-  f.drawFractal();
-  fractals.push(f);
-  //}
+  var rand = random(3, 5);
+  for (var i = 0; i < rand; i++) {
+    f = new fractalCircle(xPoint + i * random(-20, 20), yPoint + i * random(-20, 20), circleSize * (rand - i) * random(-0.7, -0.2), circleHue + random(0, 30), pgOne);
+    f.drawFractal();
+    fractals.push(f);
+  }
   //print(xPoint+','+yPoint);
   pg.push(pgOne);
   pop();
