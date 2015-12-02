@@ -97,13 +97,19 @@ function draw() {
   }
   //blendMode(BLEND );
   drawPalette(paletteX, paletteY);
-  drawPaletteMarker(paletteX, paletteY,hueStart);
+  drawPaletteMarker(paletteX, paletteY, hueStart);
   textInstructions();
 
 }
 
 function mouseDragged() {
+  if (selectPattern == 'fractals') {
+    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
+      setSelect();
+      fractalArt(selectX, selectY);
 
+    }
+  }
 }
 
 function mouseReleased() {
@@ -123,12 +129,6 @@ function mouseReleased() {
       brTrue = true;
     }
 
-  } else if (selectPattern == 'fractals') {
-    if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
-      setSelect();
-      fractalArt(selectX, selectY);
-
-    }
   } else {
     if ((mouseX < paletteX + 50 && mouseY > paletteY - 50) || (mouseY > 0.8 * windowHeight && mouseX > windowWidth * 0.8)) {} else {
       setSelect();
@@ -145,9 +145,9 @@ function keyPressed() {
     for (var i = 0; i < pg.length; i++) {
 
       //for (var a = 0; a < xsplit.value(); a++) {
-        //for (var b = 0; b < ysplit.value(); b++) {
-          image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
-        //}
+      //for (var b = 0; b < ysplit.value(); b++) {
+      image(pg[i], a * cWidth, b * cHeight, cWidth, cHeight);
+      //}
       //}
 
     }
