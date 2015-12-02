@@ -9,9 +9,9 @@ function circleArt(selectX, selectY) {
   //background(overallBG);
   pop();
   //for (var a = 0; a < xsplit.value(); a++) {
-    //for (var b = 0; b < ysplit.value(); b++) {
-      image(pgTwo, 0 , 0,  fWidth , fHeight );
-    //}
+  //for (var b = 0; b < ysplit.value(); b++) {
+  image(pgTwo, 0, 0, fWidth, fHeight);
+  //}
   //}
 }
 
@@ -30,11 +30,10 @@ function lineArt(selectX, selectY, hs) {
       curvesBW(linesBr[a], linesBr[a + 1], (brCount - 1) % numLines, hs, pgThree);
     }
   }
-
   //for (var a = 0; a < xsplit.value(); a++) {
-    //for (var b = 0; b < ysplit.value(); b++) {
-      image(pgThree,  0,  0, fWidth, fHeight);
-    //}
+  //for (var b = 0; b < ysplit.value(); b++) {
+  image(pgThree, 0, 0, fWidth, fHeight);
+  //}
   //}
   drawPalette(paletteX, paletteY);
 }
@@ -51,79 +50,61 @@ function fractalArtOld() {
   if (xPoint < cWidth && yPoint < cHeight && xPoint > 0 && yPoint > 0) {
     if (selectPattern == 'fractals') {
       background(overallBG);
-      cWidth = fWidth / 1;// xsplit.value();
-      cHeight = fHeight / 1;// ysplit.value();
+      cWidth = fWidth / 1; // xsplit.value();
+      cHeight = fHeight / 1; // ysplit.value();
       push();
       colorMode(HSB);
       var distFromCenter = dist(xPoint, yPoint, canvasWidth / 2, canvasHeight / 2);
       var circleSize = (canvasWidth / 20 - distFromCenter / 10) / 3;
-
-
       circleHue = map(distFromCenter, 0, sqrt((canvasWidth * canvasWidth + canvasHeight * canvasHeight) / 4), hueStart, hueStart + 50);
       pgOne = createGraphics(cWidth, cHeight);
       cS = map(distFromCenter, 0, 350, 10, 70);
-
       f = new fractalCircle(xPoint, yPoint, circleSize, circleHue, pgOne);
       //print(xPoint+','+yPoint);
-
       f.drawFractal();
-
       pg.push(pgOne);
       fractals.push(f);
       pop();
       for (var i = 0; i < pg.length; i++) {
         //for (var a = 0; a < xsplit.value(); a++) {
-          //for (var b = 0; b < ysplit.value(); b++) {
-            image(pg[i], 0, 0, cWidth, cHeight);
-          //}
+        //for (var b = 0; b < ysplit.value(); b++) {
+        image(pg[i], 0, 0, cWidth, cHeight);
+        //}
         //}
       }
-
     }
     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   }
-
 }
 
 function fractalArt(xPoint, yPoint) {
-
-
-
   background(overallBG);
-  cWidth = fWidth / 1;//xsplit.value();
-  cHeight = fHeight / 1;//ysplit.value();
+  cWidth = fWidth / 1; //xsplit.value();
+  cHeight = fHeight / 1; //ysplit.value();
   push();
   colorMode(HSB);
   var distFromCenter = dist(xPoint, yPoint, canvasWidth / 2, canvasHeight / 2);
   var circleSize = (canvasWidth / 17 - distFromCenter / 6) / 3;
-
-
   circleHue = hueStart; //map(distFromCenter, 0, sqrt((canvasWidth * canvasWidth + canvasHeight * canvasHeight) / 4), hueStart, hueStart + 50);
   pgOne = createGraphics(cWidth, cHeight);
   cS = map(distFromCenter, 0, 350, 10, 70);
-  var rand = random(3, 5);
-  for (var i = 0; i < rand; i++) {
-    f = new fractalCircle(xPoint + i * random(-20, 20), yPoint + i * random(-20, 20), circleSize * (rand - i) * random(-0.7, -0.2), circleHue + random(0, 30), pgOne);
-    f.drawFractal();
-    fractals.push(f);
-  }
+  //var rand = random(3, 5);
+  //for (var i = 0; i < rand; i++) {
+  f = new fractalCircle(xPoint, yPoint, circleSize, circleHue, pgOne);
+  f.drawFractal();
+  fractals.push(f);
+  //}
   //print(xPoint+','+yPoint);
-
-
-
   pg.push(pgOne);
-
   pop();
   for (var i = 0; i < pg.length; i++) {
     //for (var a = 0; a < xsplit.value(); a++) {
-      //for (var b = 0; b < ysplit.value(); b++) {
-        image(pg[i], 0, 0, cWidth, cHeight);
-      //}
+    //for (var b = 0; b < ysplit.value(); b++) {
+    image(pg[i], 0, 0, cWidth, cHeight);
     //}
-
+    //}
     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   }
-
 }
 
 
@@ -134,13 +115,11 @@ function curvesBW(lines1, lines2, i, hs, pgThree) {
   colorMode(HSB);
   pgThree.stroke(hs + abs((frameCount % 100) - 50), 100, 100, 50);
   for (var a = 1; a < lines2.ax.length; a++) {
-
     l.ax[a] = lines1.ax[a] + ((lines2.ax[a] - lines1.ax[a]) / numLines) * i;
     l.ay[a] = lines1.ay[a] + ((lines2.ay[a] - lines1.ay[a]) / numLines) * i;
     l.lax[a] = lines1.lax[a] + ((lines2.lax[a] - lines1.lax[a]) / numLines) * i;
     l.lay[a] = lines1.lay[a] + ((lines2.lay[a] - lines1.lay[a]) / numLines) * i;
     pgThree.strokeWeight(0.5);
-
     //noFill();
     pgThree.line(l.ax[a], l.ay[a], l.ax[a - 1], l.ay[a - 1]);
     pgThree.line(l.lax[a], l.lay[a], l.lax[a - 1], l.lay[a - 1]);
@@ -156,26 +135,18 @@ function fractalCircle(x, y, size, circleHue, pgOne) {
   this.circleHue = circleHue;
   this.size = size;
   this.drawFractal = function() {
-
     angleMode(DEGREES);
-
     //translate(this.x, this.y);
-
     for (var k = 0; k < 4; k++) {
-
       circles = [];
       angle = 45 * k;
       angleMode(DEGREES);
       //rotate(45);
       a = new circle(this.size, this.x, this.y, 0, this.circleHue, pgOne);
-
       circles.push(a);
       for (var i = 0; i < totIt; i++) {
-
         for (var j = 0; j < circles.length; j++) {
-
           if (circles[j].flag == i) {
-
             val = circles[j].draw();
             r = circles[j].radius;
             var newx2, newy;
@@ -198,11 +169,7 @@ function fractalCircle(x, y, size, circleHue, pgOne) {
         }
       }
     }
-
-
   }
-
-
 }
 
 function circleArtPiece(x, y, sizeX, sizeY, lineHue, pgOne) {
@@ -218,7 +185,6 @@ function circleArtPiece(x, y, sizeX, sizeY, lineHue, pgOne) {
     noFill();
     pgOne.ellipse(x, y, sizeX, sizeY);
   }
-
 }
 
 function lineArtPiece(x, y, sizeX, sizeY, lineHue, pgOne) {
@@ -234,5 +200,4 @@ function lineArtPiece(x, y, sizeX, sizeY, lineHue, pgOne) {
     noFill();
     pgOne.line(x, y, sizeX, sizeY);
   }
-
 }
